@@ -21,6 +21,12 @@ class Pedido_model extends CI_Model{
 		return $query->result(); 
 	}
 
+	public function pedidoPeloId($id){
+		$this->db->where('id', $id); 
+		$query = $this->db->get('pedido'); 
+		return $query->row(); 
+	}
+
 	public function retornarItens($idPedido){
 		//select nome, descricao, valor from item as i, pedido_has_item as ph where i.id = ph.item_id and ph.pedido_id = 34; 
 		$this->db
@@ -44,5 +50,21 @@ class Pedido_model extends CI_Model{
 		$query = $this->db->get(); 
 
 		return ($query->num_rows() > 0 ); 
+	}
+
+	//Este método só funciona se a mesa estiver ocupada; 
+	public function idPedidoPelaMesa($numeroMesa){
+		$this->db
+				 ->select('id')
+				 ->from('pedido')
+				 ->where('aberto', 1)
+				 ->where('numero_mesa', $numeroMesa); 
+
+	   $query = $this->db->get(); 
+
+	   if($query->num_rows() < 1 )
+	   		return -1; 
+
+	   	return $query->row()->id; 
 	}
 }

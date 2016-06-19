@@ -22,6 +22,15 @@
 			font-family: 'Open Sans', sans-serif !important;
 		}
 
+		.itens{
+			height: 140px;
+			overflow-y: scroll;
+		}
+
+		ul{
+			font-size: 10px;
+		}
+
 	</style>
 </head>
 <body>
@@ -64,209 +73,85 @@
 	<div class="row">
 
 		<!-- Mesa 1 -->
-		<div class="medium-3 columns">
-			<div class="callout box success ">
-				<!-- Número da mesa, informações do cliente, itens do pedido e funcioalidades-->
-				<div>
-					<h1>1</h1>
-				</div>
+		<?php for($a = 1; $a <= 10; $a++){ ?>
 
-				<div>
-					<small>Nume: funano</small> <br>
-					<small>Status: Ocupada</small>
-				</div>
+			<?php 
+					//Procurando qual é o índice dessa mesa no vetor. 
+			$indiceMesa = 0; 
+			$achei = false; 
+			for($b = 0; $b < count($mesas); $b++ ){
+				if($mesas[$b]['pedido']->numero_mesa == $a ){
+					$achei = true; 
+					break;  
+				}
+				$indiceMesa++; 
+			}
 
-				<div>
-					<ul>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-					</ul>
-				</div>
+			$temp; 
+			if($achei){
+				$temp['cliente'] = $mesas[$indiceMesa]['cliente']; 
+				$temp['itens'  ] = $mesas[$indiceMesa]['itensPedido']; 
+				$temp['pedido' ] = $mesas[$indiceMesa]['pedido']; 
+				// var_dump($temp); 
+			}
 
-				<div>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
+			?>
+
+			<div class="medium-3 columns">
+				<div class="callout box <?php echo ($achei) ? "success" : "alert";  ?> ">
+					<!-- Número da mesa, informações do cliente, itens do pedido e funcioalidades-->
+					<div>
+						<h1><?php echo $a; ?></h1>
+					</div>
+
+					<div>
+						<small>Nome cliente:   <?php echo ($achei)? $temp['cliente']->nome : "Sem cliente"; ?></small> <br>
+						<small>Status: <?php echo ($achei)? "<span style='color:red;'>Ocupada</span>" : "<span style='color:green;'>Livre</span>"; ?></small>
+					</div>
+
+					<small>Itens do pedido: </small>
+					<div class="itens">
+						<ul>
+
+							<?php 
+								$total =0; 
+							if($achei){
+								foreach($temp['itens'] as $item ){
+									$retorno  = '<li>'; 
+									$retorno .= $item->nome."-(".$item->valor."*".$item->quantidade.") = R$". $item->valor * $item->quantidade; 
+									$retorno .= '</li>'; 
+
+									$total += $item->valor * $item->quantidade; 
+									echo $retorno; 
+								}
+							}
+							?>
+						</ul>
+					</div>
+
+					<div>
+						<small>Valor total: R$<?php echo "<span style='color:red;'>".$total."</span>"; ?> </small>
+					</div>
+
+					<div>
+						<button class="button tiny">Função</button>
+						<button class="button tiny">Função</button>
+						<button class="button tiny">Função</button>
+						<button class="button tiny">Função</button>
+					</div>
 				</div>
 			</div>
+			<!-- Mesa 1 -->
+			<?php } ?> 
 		</div>
-		<!-- Mesa 1 -->
 
-		<!-- Mesa 1 -->
-		<div class="medium-3 columns">
-			<div class="callout box success ">
-				<!-- Número da mesa, informações do cliente, itens do pedido e funcioalidades-->
-				<div>
-					<h1>2</h1>
-				</div>
 
-				<div>
-					<small>Nume: funano</small> <br>
-					<small>Status: Ocupada</small>
-				</div>
+		<!-- Overview -->
 
-				<div>
-					<ul>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-					</ul>
-				</div>
-
-				<div>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-				</div>
-			</div>
-		</div>
-		<!-- Mesa 1 -->
-
-		<!-- Mesa 1 -->
-		<div class="medium-3 columns">
-			<div class="callout box success ">
-				<!-- Número da mesa, informações do cliente, itens do pedido e funcioalidades-->
-				<div>
-					<h1>3</h1>
-				</div>
-
-				<div>
-					<small>Nume: funano</small> <br>
-					<small>Status: Ocupada</small>
-				</div>
-
-				<div>
-					<ul>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-					</ul>
-				</div>
-
-				<div>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-				</div>
-			</div>
-		</div>
-		<!-- Mesa 1 -->
-
-		<!-- Mesa 1 -->
-		<div class="medium-3 columns">
-			<div class="callout box success ">
-				<!-- Número da mesa, informações do cliente, itens do pedido e funcioalidades-->
-				<div>
-					<h1>4</h1>
-				</div>
-
-				<div>
-					<small>Nume: funano</small> <br>
-					<small>Status: Ocupada</small>
-				</div>
-
-				<div>
-					<ul>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-					</ul>
-				</div>
-
-				<div>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-				</div>
-			</div>
-		</div>
-		<!-- Mesa 1 -->
-
-		<!-- Mesa 1 -->
-		<div class="medium-3 columns">
-			<div class="callout box success ">
-				<!-- Número da mesa, informações do cliente, itens do pedido e funcioalidades-->
-				<div>
-					<h1>5</h1>
-				</div>
-
-				<div>
-					<small>Nume: funano</small> <br>
-					<small>Status: Ocupada</small>
-				</div>
-
-				<div>
-					<ul>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-					</ul>
-				</div>
-
-				<div>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-				</div>
-			</div>
-		</div>
-		<!-- Mesa 1 -->
-
-		<!-- Mesa 1 -->
-		<div class="medium-3 columns">
-			<div class="callout box success ">
-				<!-- Número da mesa, informações do cliente, itens do pedido e funcioalidades-->
-				<div>
-					<h1>6</h1>
-				</div>
-
-				<div>
-					<small>Nume: funano</small> <br>
-					<small>Status: Ocupada</small>
-				</div>
-
-				<div>
-					<ul>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-						<li>Salada</li>
-					</ul>
-				</div>
-
-				<div>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-					<button class="button tiny">Função</button>
-				</div>
-			</div>
-		</div>
-		<!-- Mesa 1 -->
-	</div>
-	<!-- Overview -->
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.js"></script>
-	<script type="text/javascript">
-		$(document).foundation();
-	</script>
-</body>
-</html>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.js"></script>
+		<script type="text/javascript">
+			$(document).foundation();
+		</script>
+	</body>
+	</html>

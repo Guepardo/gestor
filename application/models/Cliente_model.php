@@ -13,6 +13,16 @@ class Cliente_model extends CI_Model{
 		$this->db->insert('cliente', $cliente); 
 	}
 
+	public function peloId($id){
+		$this->db->where('id', $id); 
+		$query = $this->db->get('cliente'); 
+
+		if($query->num_rows() < 1 )
+			return -1;
+
+		return $query->row(); 
+	}
+	
 	//Lista todos os clientes na base dados; 
 	public function todos(){
 		//retorna uma variável chamada query; 
