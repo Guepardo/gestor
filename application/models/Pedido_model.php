@@ -15,6 +15,11 @@ class Pedido_model extends CI_Model{
 	}
 
 
+	public function atualizar($data, $idPedido){
+		$this->db->where('id'     , $idPedido); 
+		return $this->db->update('pedido', $data); 
+	}
+
 	//Pegar todos os pedidos em aberto. 
 	public function todos(){
 		$query = $this->db->get('pedido'); 
@@ -30,7 +35,7 @@ class Pedido_model extends CI_Model{
 	public function retornarItens($idPedido){
 		//select nome, descricao, valor from item as i, pedido_has_item as ph where i.id = ph.item_id and ph.pedido_id = 34; 
 		$this->db
-				 ->select('nome, descricao, valor, quantidade')
+				 ->select('id, nome, descricao, valor, quantidade')
 				 ->from('item as i, pedido_has_item as ph')
 				 ->where('i.id = ph.item_id')
 				 ->where('ph.pedido_id', $idPedido);

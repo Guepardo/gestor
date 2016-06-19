@@ -29,6 +29,14 @@
 		.button{
 			margin:0;
 		}
+
+		td, th {
+			padding: 3px !important;
+		}
+
+		table{
+			font-size:13px;
+		}
 	</style>
 </head>
 <body>

@@ -68,8 +68,22 @@ class Home extends CI_Controller{
 			array_push($mesas, $temp); 
 		}
 
-		$data['mesas'] = $mesas; 
-
+		$data['mesas'     ] = $mesas; 
+		$data['todosItens'] = $this->item->todos(); 
+		
 		$this->load->view('home_view', $data);
+	}
+
+	public function liberar(){
+		$this->load->model('pedido_model', 'pedido'); 
+
+		$data['aberto'] = false; 
+
+		$idPedido = $this->input->post('id_pedido'); 
+
+		if($this->pedido->atualizar($data, $idPedido))
+			die(json_encode(array('status' => true, 'msg' => 'Mesa liberada com sucesso.'))); 
+		else
+			die(json_encode(array('status' => false, 'msg' => "Erro na persistência do Pedido."))); 
 	}
 }

@@ -20,7 +20,10 @@ $route['item'       ] = 'item';
 
 //Rotas para pedido; 
 $route['p/criar'    ] = 'pedido/criar'; 
+$route['p/itens'    ] = 'pedido/pegarItensPedido'; 
+$route['p/adicionar'] = 'pedido/adicionarItens'; 
 $route['pedido'     ] = 'pedido'; 
+
 //Rotas para garcom
 $route['g/cadastrar'] = 'garcom/cadastrar';
 $route['g/deletar'  ] = 'garcom/deletar';  
@@ -32,7 +35,8 @@ $route['a/sair']       = 'autenticar/sair';
 $route['login'       ] = 'autenticar'; 
 
 //Rotas para a home: 
-$route['home']         = 'home'; 
+$route['home'     ]    = 'home'; 
+$route['h/liberar']	   = 'home/liberar'; 
 
 
 /*

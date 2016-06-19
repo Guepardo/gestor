@@ -113,4 +113,43 @@ class Pedido extends CI_Controller{
 		//Enviando informação de que tudo ocorreu bem; 
 		die(json_encode(array('status' => true, 'msg' => 'Pedido cadastrado com sucesso.'))); 
 	}
+
+	public function pegarItensPedido(){
+		$this->load->model('pedido_model', 'pedido'); 
+
+		$idPedido = $this->input->post('id_pedido'); 
+
+		$itens = $this->pedido->retornarItens($idPedido); 
+
+		die(json_encode(array('status' => true, 'data' => $itens))); 
+	}
+
+	public function adicionarItens(){
+		//Capturando o id do pedido recém cadastrado; 
+		$idPedido = $this->input->post("pedido_id"); 
+
+		if($idPedido == -1 )//Não sei ao certo qual é a condição de erro aqui, and then.. 
+			die(json_encode(array('status' => false, 'msg' => "Erro na persistência do pedido"))); 
+		
+
+		//Obtendo array de itens do método post
+		$itens = $this->input->post('item'); 
+
+		//Carregando modelo do pedido_has_item: 
+		$this->load->model('pedidotem_model','tem'); 
+
+		//Registrando cada item ao pedido recém cadastrado; 
+		foreach ($itens as $item){
+			$pedaco = explode('-', $item); 
+			
+			$itemTemp['pedido_id' ] = $idPedido;
+			$itemTemp['item_id'   ] = $pedaco[0];
+			$itemTemp['quantidade'] = $pedaco[1]; 
+
+			$this->tem->adicionarItem($itemTemp); 
+		}
+
+		//Enviando informação de que tudo ocorreu bem; 
+		die(json_encode(array('status' => true, 'msg' => 'Pedido cadastrado com sucesso.'))); 
+	}
 } 

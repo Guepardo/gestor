@@ -11,7 +11,7 @@
 	<style type="text/css">
 		body{
 			font-family: 'Open Sans', sans-serif !important;
-				overflow: auto !important;
+			overflow: auto !important;
 		}
 
 		h1, h2, h3, h4, h5, h6 {
@@ -43,6 +43,14 @@
 			margin: 20px 0 20px 0; 
 		}
 
+		td, th {
+			padding: 3px !important;
+		}
+
+		table{
+			font-size:13px;
+		}
+		
 		.reveal.without-overlay {
 			position: absolute;
 			/* overflow: auto; */
@@ -55,10 +63,10 @@
 		<div class="top-bar-left">
 			<ul class="menu">
 				<li class="menu-text">Logo</li>
+				<li><a href="pedido">Pedidos</a></li>
 				<li><a href="home">Home</a></li>
 				<li><a href="garcom">Carçons</a></li>
 				<li><a href="item">Itens</a></li>
-				<li><a href="pedido">Pedidos</a></li>
 				<li><a href="cliente">Clientes</a></li>
 			</ul>
 		</div>
@@ -224,6 +232,7 @@
 						</button>
 					</div>
 					<!-- Modal -->
+					
 					<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 					<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.js"></script>
 					<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
@@ -294,8 +303,10 @@
 							.done(function(data){
 								data = JSON.parse(data); 
 
-								if(data.status)
+								if(data.status){
 									alertify.success(data.msg); 
+									reload(1000); 
+								}
 								else
 									alertify.error(data.msg); 
 							}); 
@@ -332,6 +343,12 @@
 						}); 
 					}); 
 
-				</script>
-			</body>
-			</html>
+						function reload(timeout){
+							setTimeout(function(){
+								location.reload(); 
+							},timeout); 
+						}
+
+					</script>
+				</body>
+				</html>
