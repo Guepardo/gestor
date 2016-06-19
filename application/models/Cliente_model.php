@@ -14,7 +14,7 @@ class Cliente_model extends CI_Model{
 	}
 
 	//Lista todos os clientes na base dados; 
-	public function listar(){
+	public function todos(){
 		//retorna uma variável chamada query; 
 		$query = $this->db->get('cliente'); 
 		return $query->result(); 

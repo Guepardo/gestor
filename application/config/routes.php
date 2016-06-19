@@ -1,6 +1,40 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+$route['default_controller'] = 'welcome';
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
+
+//Rotas para testes: 
+$route['teste/get/(:any)'] = 'teste/get/$1'; 
+$route['teste/post']       = 'teste/post'; 
+
+//Rotas para clientes; 
+$route['c/cadastrar'] = 'cliente/cadastrar'; 
+
+//Rotas para Itens; 
+$route['i/cadastrar'] = 'item/cadastrar'; 
+$route['i/deletar'  ] = 'item/deletar';  
+$route['item'       ] = 'item'; 
+
+//Rotas para pedido; 
+$route['p/criar'    ] = 'pedido/criar'; 
+$route['pedido'     ] = 'pedido'; 
+//Rotas para garcom
+$route['g/cadastrar'] = 'garcom/cadastrar';
+$route['g/deletar'  ] = 'garcom/deletar';  
+$route['garcom'     ] = 'garcom'; 
+
+//Rotas para o login: 
+$route['a/autenticar'] = 'autenticar/auth'; 
+$route['a/sair']       = 'autenticar/sair'; 
+$route['login'       ] = 'autenticar'; 
+
+//Rotas para a home: 
+$route['home']         = 'home'; 
+
+
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -49,21 +83,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
-
-
-//Rotas para testes: 
-$route['teste/get/(:any)'] = 'teste/get/$1'; 
-$route['teste/post']       = 'teste/post'; 
-
-
-//Rotas para clientes; 
-$route['c/cadastrar'] = 'cliente/cadastrar'; 
-
-//Rotas para Itens; 
-$route['i/cadastrar'] = 'item/cadastrar'; 
-
-//Rotas para pedido; 
-$route['p/criar'    ] = 'pedido/criar'; 

@@ -15,8 +15,15 @@ class Item_model extends CI_Model{
 	}
 
 	//Pegar todos os itens. 
-	public function todosItens(){
+	public function todos(){
 		$query = $this->db->get('item'); 
 		return $query->result(); 
 	}
+
+	//Deletar um item pelo Id
+	public function delete($id){
+		$this->db->where("id = $id"); 
+		return $this->db->delete('item'); 
+	}
+
 }
