@@ -8,7 +8,6 @@ class Item_model extends CI_Model{
 		parent::__construct(); 
 	}
 
-
 	//Cadastrar num novo item. 
 	public function cadastrar($item){
 		$this->db->insert('item', $item); 
@@ -16,6 +15,7 @@ class Item_model extends CI_Model{
 
 	//Pegar todos os itens. 
 	public function todos(){
+		$this->db->order_by('nome', 'asc'); 
 		$query = $this->db->get('item'); 
 		return $query->result(); 
 	}

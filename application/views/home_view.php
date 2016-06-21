@@ -6,6 +6,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css" />
 
 	<style type="text/css">
@@ -35,6 +36,9 @@
 			margin-top:20px;
 		}
 
+		.fix span{
+			font-size: 14px;
+		}
 		#lista span{
 			font-size: 12px;
 			border: solid black 1px;
@@ -57,9 +61,9 @@
 		<div class="top-bar-left">
 			<ul class="menu">
 				<li class="menu-text">Logo</li>
+				<li class="active" ><a href="home">Home</a></li>
 				<li><a href="pedido">Pedidos</a></li>
-				<li><a href="home">Home</a></li>
-				<li><a href="garcom">Carçons</a></li>
+				<li><a href="garcom">Garçons</a></li>
 				<li><a href="item">Itens</a></li>
 				<li><a href="cliente">Clientes</a></li>
 			</ul>
@@ -86,14 +90,23 @@
 	</div>
 	<!-- Funções -->
 
+	<!-- Funções -->
+	<div class="row fix">
+		<div class="medium-12 columns">
+			<span>Lucros Obtidos: <b>R$<?php echo $lucros['lucro'];  ?></b></span> <br>
+			<span>Itens vendidos: <b><?php echo $lucros['itensQtd'];  ?></b></span>
+		</div>
+	</div>
+	<!-- Funções -->
+
 	<!-- Overview -->
-	<div class="row">
+	<div class="row fix">
 
 		<!-- Mesa 1 -->
 		<?php for($a = 1; $a <= 10; $a++){ ?>
 
 			<?php 
-					//Procurando qual é o índice dessa mesa no vetor. 
+			//Procurando qual é o índice dessa mesa no vetor. 
 			$indiceMesa = 0; 
 			$achei = false; 
 			for($b = 0; $b < count($mesas); $b++ ){
@@ -147,12 +160,13 @@
 					</div>
 
 					<div>
-						<small>Valor total: R$<?php echo "<span style='color:red;'>".$total."</span>"; ?> </small>
+						<small>Valor total:<?php echo "<b> R$".$total."</b>"; ?> </small>
 					</div>
 
 					<div>
-						<button data-id="<?php echo ($achei) ? $temp['pedido']->id : -1;  ?>" class="liberar button tiny <?php echo ($achei) ? "success" : "disabled";  ?>">Liberar Mesa</button>
-						<button data-id="<?php echo ($achei) ? $temp['pedido']->id : -1;  ?>" class="add_item button tiny <?php echo ($achei) ? "secondary" : "disabled";  ?>" >Add Item</button>
+						<button data-id="<?php echo ($achei) ? $temp['pedido']->id : -1;  ?>" class="liberar button tiny <?php echo ($achei) ? "success" : "disabled";  ?>">Liberar Mesa <i class="fa fa-paperclip" aria-hidden="true"></i></button>
+						<button data-id="<?php echo ($achei) ? $temp['pedido']->id : -1;  ?>" class="add_item button tiny <?php echo ($achei) ? "secondary" : "disabled";  ?>" >Add Item <i class="fa fa-plus" aria-hidden="true"></i></button>
+						<button data-id="<?php echo ($achei) ? $temp['pedido']->id : -1;  ?>" class=" button tiny <?php echo ($achei) ? "warning" : "disabled";  ?>" >Boleto <i class="fa fa-credit-card-alt" aria-hidden="true"></i></button>
 					</div>
 				</div>
 			</div>

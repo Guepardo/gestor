@@ -22,6 +22,7 @@ class Pedido_model extends CI_Model{
 
 	//Pegar todos os pedidos em aberto. 
 	public function todos(){
+		$this->db->order_by('aberto', 'desc'); 
 		$query = $this->db->get('pedido'); 
 		return $query->result(); 
 	}

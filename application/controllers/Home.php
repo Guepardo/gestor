@@ -70,8 +70,33 @@ class Home extends CI_Controller{
 
 		$data['mesas'     ] = $mesas; 
 		$data['todosItens'] = $this->item->todos(); 
-		
+		$data['lucros'    ] = $this->lucros(); 
+
 		$this->load->view('home_view', $data);
+	}
+
+	private function lucros(){
+		$this->load->model('item_model'  , 'item');
+		$this->load->model('pedido_model', 'pedido');
+
+		$pedidos = $this->pedido->todos(); 
+
+		$data['lucro']    = 0; 
+		$data['itensQtd'] = 0; 
+
+		foreach($pedidos as $pedido){
+			$itemLista['id'] = $pedido->id; 
+
+			$itens = $this->pedido->retornarItens($pedido->id);
+			
+			foreach($itens as $item){
+				$data['lucro']    += $item->valor * $item->quantidade; 
+			    $data['itensQtd'] += $item->quantidade; 
+			}
+
+		}
+
+		return $data; 
 	}
 
 	public function liberar(){

@@ -6,6 +6,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css" />
 
 	<style type="text/css">
@@ -46,9 +47,9 @@
 			<ul class="menu">
 				<li class="menu-text">Logo</li>
 				<li><a href="home">Home</a></li>
-				<li><a href="garcom">Carçons</a></li>
-				<li><a href="item">Itens</a></li>
 				<li><a href="pedido">Pedidos</a></li>
+				<li><a href="garcom">Garçons</a></li>
+				<li class="active"><a href="item">Itens</a></li>
 				<li><a href="cliente">Clientes</a></li>
 			</ul>
 		</div>
@@ -69,7 +70,7 @@
 		<!-- Label -->
 	<div class="row fix">
 		<div class="medium-12 columns">
-			<h2>Itens</h2>
+			<h3>Itens</h3>
 		</div>
 	</div>
 	<!-- Label -->
@@ -77,7 +78,7 @@
 	<!-- Funções -->
 	<div class="row fix">
 		<div class="medium-12 columns">
-			<button class="button" data-toggle="cadastrar">Novo</button>
+			<button class="button" data-toggle="cadastrar">Novo<i class="fa fa-plus" aria-hidden="true"></i></button>
 		</div>
 	</div>
 	<!-- Funções -->
